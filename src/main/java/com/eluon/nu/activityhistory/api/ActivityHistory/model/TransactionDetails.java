@@ -2,51 +2,43 @@ package com.eluon.nu.activityhistory.api.ActivityHistory.model;
 
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Repository
+@Entity
+@Table(name = "transaction")
 public class TransactionDetails {
-    @NotNull(message = "user type cannot be null")
-    private String user_type;
-    @NotNull(message = "trx_id cannot be null")
+    @Id
+    @GeneratedValue
     private String trx_id;
-    @NotNull(message = "service_id cannot be null")
-    private String service_id;
-    @NotNull(message = "service_message cannot be null")
-    private String service_message;
-    @NotNull(message = "user id cannot be null")
+    @Column(nullable = false)
     private String user_id;
-
-    public String getUser_type() {
-        return user_type;
-    }
-
-    public void setUser_type(String user_type) {
-        this.user_type = user_type;
-    }
+    @Column(nullable = false)
+    private String calling_type;
+    @Column(nullable = false)
+    private String information;
 
     public String getTrx_id() {
         return trx_id;
     }
-
     public void setTrx_id(String trx_id) {
         this.trx_id = trx_id;
     }
 
-    public String getService_id() {
-        return service_id;
+    public String getCalling_type() {
+        return calling_type;
     }
 
-    public void setService_id(String service_id) {
-        this.service_id = service_id;
+    public void setCalling_type(String calling_type) {
+        this.calling_type = calling_type;
     }
 
-    public String getService_message() {
-        return service_message;
+    public String getInformation() {
+        return information;
     }
 
-    public void setService_message(String service_message) {
-        this.service_message = service_message;
+    public void setInformation(String information) {
+        this.information = information;
     }
 
     public String getUser_id() {

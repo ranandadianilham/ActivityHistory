@@ -5,15 +5,16 @@ import com.eluon.nu.activityhistory.api.ActivityHistory.model.TransactionDetails
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.eluon.nu.activityhistory.api.ActivityHistory.service.ActivityHistoryServiceImpl;
 
+import java.util.Map;
+
 @RestController
-@RequestMapping
+@RequestMapping("/nu/")
 public class ActivityHistoryController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -22,31 +23,35 @@ public class ActivityHistoryController {
 
     @GetMapping("/test")
     public String test(){
-        return "test 123";
+        return "mbeek";
     }
 
-    @RequestMapping(value = "/",
-            method = RequestMethod.POST,
+    //request for inserting transaction history for user type KYAI
+    @RequestMapping(value = "insertactivityhistory/kyai", method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ResponseModel> saveTransactionHistory(@Validated @RequestHeader("user_id") String user_id,
-                                                                @Validated @RequestBody TransactionDetails transactionDetails){
-        //show currently logged in user id
-        logger.info("Logged as "+user_id);
+    public ResponseEntity insertKyai(@Validated @RequestHeader("user_id") String user_id,
+                                                               @Validated @RequestBody TransactionDetails transactionDetails){
+        logger.info("insert transaction details as kyai");
+        return activityHistoryService.saveTransaction("kyai",transactionDetails);
+    }
 
-       /* //check whether each attribute is not empty
-        if(transactionDetails.getTrx_id().equals("") || transactionDetails.getService_id().equals("") || transactionDetails.getUser_id().equals("") ||
-                transactionDetails.getService_message().equals("") || transactionDetails.getUser_type().equals("")){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ResponseModel(1,"Request is not right"));
-        }
+    //request for inserting transaction history for user type USER
+    @RequestMapping(value = "insertactivityhistory/user", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity insertUser(@Validated @RequestHeader("user_id") String user_id,
+                                                    @Validated @RequestBody TransactionDetails transactionDetails){
+        logger.info("insert transaction details as user");
+        return activityHistoryService.saveTransaction("user",transactionDetails);
+    }
 
-        //send request body to com.eluon.nu.activityhistory.api.ActivityHistory.service class
-        int responseBody = activityHistoryService.saveTransactionHistory(transactionDetails);
-        ResponseModel result = new ResponseModel(0,"OK");*/
-        //return result from com.eluon.nu.activityhistory.api.ActivityHistory.service
-
-
-        return activityHistoryService.saveTransactionHistory(transactionDetails);
+    //search history by user id
+    @RequestMapping(value = "/userhistory", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity searchTransactionByUserId(@RequestHeader("user_id") String user_id, @RequestBody Map<String, String> userDetails){
+        logger.info("search transaction history by user_id");
+        return activityHistoryService.searchTransactionByUserId(userDetails.get("user_id"));
     }
 }

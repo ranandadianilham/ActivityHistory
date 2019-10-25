@@ -26,12 +26,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         logger.info("com.eluon.nu.activityhistory.api.ActivityHistory.security scan");
 
+
+        http.csrf().disable();
+
         //authorize request from zuul gateway
+        //logger.info(http.);
         http.authorizeRequests().antMatchers("/**").hasIpAddress(env.getProperty("gateway.ip")); // allow any url pattern with ip address
         //http.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated();
         //http.authorizeRequests().antMatchers("/**").permitAll();
 
-        http.csrf().disable();
         http.headers().frameOptions().disable();
     }
 }
