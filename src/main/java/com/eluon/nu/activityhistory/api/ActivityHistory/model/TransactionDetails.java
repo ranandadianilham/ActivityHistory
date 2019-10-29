@@ -8,9 +8,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "transaction")
 public class TransactionDetails {
+
     @Id
-    @GeneratedValue
-    private String trx_id;
+    @Column(name = "trx_id")
+    private String service_code;
     @Column(nullable = false)
     private String user_id;
     @Column(nullable = false)
@@ -18,11 +19,12 @@ public class TransactionDetails {
     @Column(nullable = false)
     private String information;
 
-    public String getTrx_id() {
-        return trx_id;
+    public String getService_code() {
+        return service_code;
     }
-    public void setTrx_id(String trx_id) {
-        this.trx_id = trx_id;
+
+    public void setService_code(String service_code) {
+        this.service_code = service_code;
     }
 
     public String getCalling_type() {

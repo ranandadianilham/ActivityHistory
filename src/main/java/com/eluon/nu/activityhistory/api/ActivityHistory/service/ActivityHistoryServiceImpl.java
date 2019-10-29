@@ -27,11 +27,11 @@ public class ActivityHistoryServiceImpl implements ActivityHistoryService {
     public ResponseEntity saveTransaction(String user_type, TransactionDetails transactionDetails) {
 
         //if transaction details contain empty field
-        if(transactionDetails.getUser_id().equals("") || transactionDetails.getCalling_type().equals("") ||
+        /*if(transactionDetails.getUser_id().equals("") || transactionDetails.getCalling_type().equals("") ||
                 transactionDetails.getInformation().equals("")){
             ResponseApi responseApi = ResponseApi.builder().status(0).message("empty request").data(null).build();
             return responseApi.toBadRequest();
-        }
+        }*/
 
         //try to execute transaction data into dao object
         try{

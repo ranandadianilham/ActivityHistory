@@ -33,7 +33,7 @@ public class ActivityHistoryController {
     public ResponseEntity insertKyai(@Validated @RequestHeader("user_id") String user_id,
                                                                @Validated @RequestBody TransactionDetails transactionDetails){
         logger.info("insert transaction details as kyai");
-        return activityHistoryService.saveTransaction("kyai",transactionDetails);
+        return activityHistoryService.saveTransaction("k",transactionDetails);
     }
 
     //request for inserting transaction history for user type USER
@@ -43,7 +43,7 @@ public class ActivityHistoryController {
     public ResponseEntity insertUser(@Validated @RequestHeader("user_id") String user_id,
                                                     @Validated @RequestBody TransactionDetails transactionDetails){
         logger.info("insert transaction details as user");
-        return activityHistoryService.saveTransaction("user",transactionDetails);
+        return activityHistoryService.saveTransaction("u",transactionDetails);
     }
 
     //search history by user id
