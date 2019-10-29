@@ -1,19 +1,15 @@
 package com.eluon.nu.activityhistory.api.ActivityHistory.service;
 
 import com.eluon.nu.activityhistory.api.ActivityHistory.Dao.ActivityHistoryDao;
-import com.eluon.nu.activityhistory.api.ActivityHistory.model.ResponseModel;
 import com.eluon.nu.activityhistory.api.ActivityHistory.model.TransactionDetails;
 import com.eluon.nu.activityhistory.api.ActivityHistory.model.TransactionDetailsEntity;
 import com.eluon.nu.activityhistory.api.ActivityHistory.other.ResponseApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

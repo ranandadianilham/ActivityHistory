@@ -21,9 +21,9 @@ public class ActivityHistoryController {
     @Autowired
     ActivityHistoryServiceImpl activityHistoryService;
 
-    @GetMapping("/test")
+    @GetMapping("/welcome")
     public String test(){
-        return "mbeek";
+        return "welcome to activity history";
     }
 
     //request for inserting transaction history for user type KYAI

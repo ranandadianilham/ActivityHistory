@@ -3,10 +3,10 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
 }
-
 group = 'com.eluon.nu.activityhistory.api'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '1.8'
+
 
 repositories {
 	mavenCentral()
