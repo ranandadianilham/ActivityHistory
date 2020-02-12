@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-ADD ActivityHistory-0.0.1.jar ActivityHistory.jar
+COPY ActivityHistory-0.0.1.jar ActivityHistory.jar
 
 EXPOSE 8809
 
